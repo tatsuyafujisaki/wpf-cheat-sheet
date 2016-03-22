@@ -1,0 +1,8 @@
+﻿<Application x:Class="WpfUtil.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <BitmapImage x:Key="GreatWave"
+                     UriSource="Resources/GreatWave.jpg"/>
+    </Application.Resources>
+</Application>
