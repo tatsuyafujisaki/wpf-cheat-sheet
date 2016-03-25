@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WpfUtil
@@ -26,6 +27,12 @@ namespace WpfUtil
         private void DigitAndDecimalPointOnly(object sender, TextCompositionEventArgs e)
         {
             e.Handled = Regex.IsMatch(e.Text, @"[^\d.]+");
+        }
+
+        private void TrimTextBox(object sender, RoutedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            tb.Text = tb.Text.Trim();
         }
     }
 }
