@@ -12,6 +12,14 @@ namespace WpfUtil
             // BringOldToFront();
             CloseDuplicate();
 
+            var args = Environment.GetCommandLineArgs().Skip(1).ToArray();
+
+            if (!AreValidArguments(args))
+            {
+                LoadCompleted += (sender, e) => Current.Shutdown();
+                return;
+            }
+
             // InitializeComponent() is necessary to enable <Application.Resource> in App.xaml.
             InitializeComponent();
 
@@ -27,12 +35,7 @@ namespace WpfUtil
         private static void CloseDuplicate()
         {
             var me = Process.GetCurrentProcess();
-            var myId = me.Id;
-
-            foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != myId))
-            {
-                p.Kill();
-            }
+            foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id)) { p.Kill(); }
         }
 
         private static void BringOldToFront()
@@ -49,6 +52,11 @@ namespace WpfUtil
             }
 
             Current.Shutdown();
+        }
+
+        private static bool AreValidArguments(string[] args)
+        {
+            return true;
         }
     }
 }
