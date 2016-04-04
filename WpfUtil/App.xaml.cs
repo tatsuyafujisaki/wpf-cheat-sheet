@@ -7,29 +7,26 @@ namespace WpfUtil
 {
     public partial class App : Application
     {
-        public App()
+        // Don't use App() constructor for the two reasons.
+        // 1. Trying to shut down the application in the constructor makes an error.
+        // 2. The following does not work because LoadCompleted needs a form to be triggered.
+        // LoadCompleted += (sender, e1) => Shutdown();
+        protected override void OnStartup(StartupEventArgs e)
         {
-            // BringOldToFront();
-            CloseDuplicate();
+            base.OnStartup(e);
+
+            CloseDuplicateWithPrompt();
 
             var args = Environment.GetCommandLineArgs().Skip(1).ToArray();
 
             if (!AreValidArguments(args))
             {
-                LoadCompleted += (sender, e) => Current.Shutdown();
+                MessageBox.Show("Usage: ...");
+                Shutdown(1);
                 return;
             }
 
-            // InitializeComponent() is necessary to enable <Application.Resource> in App.xaml.
-            InitializeComponent();
-
-            var p = System.Windows.Forms.Control.MousePosition;
-
-            new MainWindow(Environment.GetCommandLineArgs().Skip(1).ToArray())
-            {
-                Left = p.X,
-                Top = p.Y
-            }.Show();
+            MessageBox.Show("Hello world!");
         }
 
         private static void CloseDuplicate()
@@ -38,7 +35,25 @@ namespace WpfUtil
             foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id)) { p.Kill(); }
         }
 
-        private static void BringOldToFront()
+        private void CloseDuplicateWithPrompt()
+        {
+            var me = Process.GetCurrentProcess();
+            var ps = Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id).ToArray();
+
+            if (!ps.Any()) { return; }
+
+            if (MessageBox.Show("Old processes are running. Close them and proceed?", "", MessageBoxButton.YesNo)
+                == MessageBoxResult.Yes)
+            {
+                foreach (var p in ps) { p.Kill(); }
+            }
+            else
+            {
+                Shutdown(1);
+            }
+        }
+
+        private void BringOldToFront()
         {
             var me = Process.GetCurrentProcess();
             var myId = me.Id;
@@ -51,7 +66,7 @@ namespace WpfUtil
                 NativeMethods.SetForegroundWindow(p.MainWindowHandle);
             }
 
-            Current.Shutdown();
+            Shutdown(1);
         }
 
         private static bool AreValidArguments(string[] args)
