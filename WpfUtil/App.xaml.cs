@@ -26,7 +26,7 @@ namespace WpfUtil
                 return;
             }
 
-            MessageBox.Show("Hello world!");
+            new MainWindow().Show();
         }
 
         private static void CloseDuplicate()

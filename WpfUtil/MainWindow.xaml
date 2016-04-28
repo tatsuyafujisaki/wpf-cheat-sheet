@@ -7,7 +7,7 @@
         <Image Width="200" Height="200" Source="{StaticResource GreatWave}" />
         <TextBox PreviewTextInput="DigitOnly"
                  LostFocus="TrimTextBox" />
-        <TextBox PreviewTextInput="DigitAndDecimalPointOnly"
+        <TextBox PreviewTextInput="DigitOrOneDecimalPointOnly"
                  LostFocus="TrimTextBox" />
         <Button Click="Button1_OnClick">Button1</Button>
         <Button Name="Button2">Button2</Button>
