@@ -5,6 +5,7 @@
         Title="MainWindow">
     <StackPanel>
         <Image Width="200" Height="200" Source="{StaticResource GreatWave}" />
+        <TextBlock>Use TextBlock rather than Label as the latter absorbs an underscore.</TextBlock>
         <TextBox PreviewTextInput="DigitOnly"
                  LostFocus="TrimTextBox" />
         <TextBox PreviewTextInput="DigitOrOneDecimalPointOnly"
