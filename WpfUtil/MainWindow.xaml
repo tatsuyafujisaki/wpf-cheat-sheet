@@ -1,6 +1,8 @@
-﻿<Window x:Class="WpfUtil.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="WpfUtil.MainWindow"
+        x:Name="Window"
+        DataContext="{Binding ElementName=Window}"
         SizeToContent="WidthAndHeight"
         Title="MainWindow"
         PreviewKeyDown="Window_PreviewKeyDown">
