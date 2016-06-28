@@ -45,5 +45,13 @@ namespace WpfUtil
             var tb = (TextBox)sender;
             tb.Text = tb.Text.Trim();
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
     }
 }
