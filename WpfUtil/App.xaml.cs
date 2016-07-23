@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace WpfUtil
 {
-    public partial class App : Application
+    partial class App : Application
     {
         // Don't use App() constructor for the two reasons.
         // 1. Trying to shut down the application in the constructor makes an error.
@@ -29,13 +29,13 @@ namespace WpfUtil
             new MainWindow().Show();
         }
 
-        private static void CloseDuplicate()
+        static void CloseDuplicate()
         {
             var me = Process.GetCurrentProcess();
             foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id)) { p.Kill(); }
         }
 
-        private void CloseDuplicateWithPrompt()
+        void CloseDuplicateWithPrompt()
         {
             var me = Process.GetCurrentProcess();
             var ps = Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id).ToArray();
@@ -53,7 +53,7 @@ namespace WpfUtil
             }
         }
 
-        private void BringOldToFront()
+        void BringOldToFront()
         {
             var me = Process.GetCurrentProcess();
             var myId = me.Id;
@@ -69,7 +69,7 @@ namespace WpfUtil
             Shutdown(1);
         }
 
-        private static bool AreValidArguments(string[] args)
+        static bool AreValidArguments(string[] args)
         {
             return true;
         }

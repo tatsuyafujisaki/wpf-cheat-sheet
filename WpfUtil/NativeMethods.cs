@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace WpfUtil
 {
-    public static class NativeMethods
+    static class NativeMethods
     {
         [DllImport("user32.dll")]
         internal static extern bool SetForegroundWindow(IntPtr hWnd);
