@@ -1,13 +1,15 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="WpfUtil.MainWindow"
-        x:Name="Window"
-        DataContext="{Binding ElementName=Window}"
+        x:Name="Window1"
+        DataContext="{Binding ElementName=Window1}"
         SizeToContent="WidthAndHeight"
         Title="MainWindow"
         PreviewKeyDown="Window_PreviewKeyDown">
-    <StackPanel >
-        <Image Width="200" Height="200" Source="{StaticResource GreatWave}" />
+    <StackPanel>
+        <Image Width="200"
+               Height="200"
+               Source="{StaticResource GreatWave}" />
         <TextBlock>Use TextBlock rather than Label as the latter absorbs an underscore.</TextBlock>
         <TextBox PreviewTextInput="DigitOnly"
                  LostFocus="TrimTextBox" />
