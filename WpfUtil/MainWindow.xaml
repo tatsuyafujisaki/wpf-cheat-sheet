@@ -7,6 +7,7 @@
         Title="MainWindow"
         PreviewKeyDown="Window_PreviewKeyDown">
     <StackPanel>
+        <TextBlock Visibility="Collapsed">Use Visibility.Collapsed rather than Height = 0 to hide an control because the latter keeps the control valid in the tab navigation.</TextBlock>
         <Image Width="200"
                Height="200"
                Source="{StaticResource GreatWave}" />
