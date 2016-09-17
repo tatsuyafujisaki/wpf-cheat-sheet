@@ -11,7 +11,7 @@
         <Image Width="200"
                Height="200"
                Source="{StaticResource GreatWave}" />
-        <TextBlock>Use TextBlock rather than Label as the latter absorbs an underscore.</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle1}">Use TextBlock rather than Label because TextBlock is more lightweight and does not absorb an underscore.</TextBlock>
         <TextBox PreviewTextInput="DigitOnly"
                  LostFocus="TrimTextBox" />
         <TextBox PreviewTextInput="DigitOrOneDecimalPointOnly"
