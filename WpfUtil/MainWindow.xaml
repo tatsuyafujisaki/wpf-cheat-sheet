@@ -3,6 +3,7 @@
         x:Class="WpfUtil.MainWindow"
         x:Name="Window1"
         DataContext="{Binding ElementName=Window1}"
+        WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         Title="MainWindow"
         PreviewKeyDown="Window_PreviewKeyDown">
