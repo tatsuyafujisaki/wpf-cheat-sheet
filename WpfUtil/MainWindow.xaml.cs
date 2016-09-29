@@ -11,17 +11,17 @@ namespace WpfUtil
         {
             InitializeComponent();
 
-            //if (SomethingBadHappend)
+            //if (SomethingWrong)
             //{
             //    // Exit after constructor.
             //    // Note that there is no way to quit in the constructor.
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
 
-            Button2.Click += (sender, e) => MessageBox.Show("Hello world!");
+            BarButton.Click += (sender, e) => MessageBox.Show("Bar");
         }
 
-        void Button1_OnClick(object sender, RoutedEventArgs e)
+        void FooButton_OnClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Foo");
         }

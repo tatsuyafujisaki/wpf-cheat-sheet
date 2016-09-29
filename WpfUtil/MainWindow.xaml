@@ -1,11 +1,11 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="WpfUtil.MainWindow"
-        x:Name="Window1"
-        DataContext="{Binding ElementName=Window1}"
+        Name="This"
+        DataContext="{Binding ElementName=This}"
+        Title="MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
-        Title="MainWindow"
         PreviewKeyDown="Window_PreviewKeyDown">
     <StackPanel>
         <TextBlock Visibility="Collapsed">Use Visibility.Collapsed rather than Height = 0 to hide an control because the latter keeps the control valid in the tab navigation.</TextBlock>
@@ -17,7 +17,20 @@
                  LostFocus="TrimTextBox" />
         <TextBox PreviewTextInput="DigitOrOneDecimalPointOnly"
                  LostFocus="TrimTextBox" />
-        <Button Click="Button1_OnClick">Button1</Button>
-        <Button Name="Button2">Button2</Button>
+        <!--
+            Use Grid as follows to stretch children equally.
+            DockPanel stretches only the last child.
+        -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Name="FooButton"
+                    Click="FooButton_OnClick">Button1</Button>
+            <Button Grid.Column="1"
+                    Name="BarButton">Button2</Button>
+        </Grid>
     </StackPanel>
 </Window>
