@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +19,12 @@ namespace WpfUtil
             //    // Note that there is no way to quit in the constructor.
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
+
+            DataGrid1.ItemsSource = new List<Record>
+            {
+                new Record("Name1", false, "User1", DateTime.Now),
+                new Record("Name2", false, "User2", DateTime.Now)
+            };
 
             BarButton.Click += (sender, e) => MessageBox.Show("Bar");
         }
@@ -52,6 +60,16 @@ namespace WpfUtil
             {
                 Close();
             }
+        }
+
+        void Pop(string format, params object[] args)
+        {
+            MessageBox.Show(string.Format(format, args));
+        }
+
+        static MessageBoxResult PopOkCancel(string format, params object[] args)
+        {
+            return MessageBox.Show(string.Format(format, args), "", MessageBoxButton.OKCancel);
         }
     }
 }

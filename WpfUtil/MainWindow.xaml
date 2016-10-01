@@ -9,6 +9,22 @@
         PreviewKeyDown="Window_PreviewKeyDown">
     <StackPanel>
         <TextBlock Visibility="Collapsed">Use Visibility.Collapsed rather than Height = 0 to hide an control because the latter keeps the control valid in the tab navigation.</TextBlock>
+        <DataGrid Name="DataGrid1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}" />
+                <DataGridTextColumn Header="IsActive"
+                                    Binding="{Binding IsActive}" />
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding UpdatedBy}" />
+                <!-- Specify StringFormat not to display seconds. -->
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding UpdatedAt}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Image Width="200"
                Height="200"
                Source="{StaticResource GreatWave}" />
