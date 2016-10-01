@@ -20,6 +20,8 @@ namespace WpfUtil
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
 
+            Title += " " + U.CreateBreadcrumb();
+
             DataGrid1.ItemsSource = new List<Record>
             {
                 new Record("Name1", false, "User1", DateTime.Now),
@@ -54,22 +56,26 @@ namespace WpfUtil
             tb.Text = tb.Text.Trim();
         }
 
+        static void Delete()
+        {
+
+        }
+
+        void DataGrid1_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                Delete();
+            }
+
+        }
+
         void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
                 Close();
             }
-        }
-
-        void Pop(string format, params object[] args)
-        {
-            MessageBox.Show(string.Format(format, args));
-        }
-
-        static MessageBoxResult PopOkCancel(string format, params object[] args)
-        {
-            return MessageBox.Show(string.Format(format, args), "", MessageBoxButton.OKCancel);
         }
     }
 }

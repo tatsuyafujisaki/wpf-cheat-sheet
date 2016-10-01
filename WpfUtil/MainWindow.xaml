@@ -1,8 +1,7 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="WpfUtil.MainWindow"
-        Name="This"
-        DataContext="{Binding ElementName=This}"
+        DataContext="{Binding ElementName=Record}"
         Title="MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
@@ -12,7 +11,8 @@
         <DataGrid Name="DataGrid1"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                  SelectionMode="Single">
+                  SelectionMode="Single"
+                  PreviewKeyDown="DataGrid1_PreviewKeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Binding="{Binding Name}" />
@@ -22,7 +22,7 @@
                                     Binding="{Binding UpdatedBy}" />
                 <!-- Specify StringFormat not to display seconds. -->
                 <DataGridTextColumn Header="Name"
-                                    Binding="{Binding UpdatedAt}" />
+                                    Binding="{Binding UpdatedAt, StringFormat=\{0:yyyy/MM/dd HH:mm\}}" />
             </DataGrid.Columns>
         </DataGrid>
         <Image Width="200"
@@ -44,9 +44,9 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
                     Name="FooButton"
-                    Click="FooButton_OnClick">Button1</Button>
+                    Click="FooButton_OnClick">Foo button</Button>
             <Button Grid.Column="1"
-                    Name="BarButton">Button2</Button>
+                    Name="BarButton">Bar button</Button>
         </Grid>
     </StackPanel>
 </Window>
