@@ -1,5 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Control = System.Windows.Forms.Control;
 using Screen = System.Windows.Forms.Screen;
@@ -17,7 +20,7 @@ namespace WpfUtil
 
         internal static string CreateBreadcrumb()
         {
-            return $"({GetBetween(Db.ConnectionString, "data source=", ";", false)} > {GetBetween(Db.ConnectionString, "initial catalog=", ";", false)} > {Db.PackageTable})";
+            return $" ({GetBetween(Db.ConnectionString, "data source=", ";", false)} > {GetBetween(Db.ConnectionString, "initial catalog=", ";", false)} > {Db.PackageTable})";
         }
 
         internal static void Pop(string format, params object[] args)
@@ -47,6 +50,11 @@ namespace WpfUtil
             var p = e.GetPosition(fe);
 
             return 0 <= p.X && 0 <= p.Y && p.X <= fe.ActualWidth && p.Y <= fe.ActualHeight;
+        }
+
+        internal static IEnumerable<T> GetDataGridItems<T>(DataGrid dg)
+        {
+            return dg.Items.Cast<T>();
         }
     }
 }

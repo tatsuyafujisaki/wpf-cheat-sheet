@@ -20,7 +20,7 @@ namespace WpfUtil
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
 
-            Title += " " + U.CreateBreadcrumb();
+            Title += U.CreateBreadcrumb();
 
             DataGrid1.ItemsSource = new List<Record>
             {
