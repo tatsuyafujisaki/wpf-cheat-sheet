@@ -16,7 +16,7 @@ namespace WpfUtil
             //if (SomethingWrong)
             //{
             //    // Exit after constructor.
-            //    // Note that there is no way to quit in the constructor.
+            //    // Note that there is no way to exit in the constructor.
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
 
