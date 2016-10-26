@@ -1,11 +1,10 @@
-﻿using System.Configuration;
+﻿using System.Data.SqlClient;
 
 namespace WpfUtil
 {
     static class Db
     {
-        internal static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
-        internal static readonly string PackageTable = ConfigurationManager.AppSettings["Table1"];
-
+        internal static readonly SqlConnectionStringBuilder Sccb = null;
+        internal static readonly string Table = null;
     }
 }

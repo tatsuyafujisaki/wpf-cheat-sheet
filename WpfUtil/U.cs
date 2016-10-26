@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,16 +10,9 @@ namespace WpfUtil
 {
     static class U
     {
-        static string GetBetween(string s, string from, string to, bool inclusive)
-        {
-            var pattern = inclusive ? $"({from}.*?{to})" : $"{from}(.*?){to}";
-            var m = Regex.Match(s, pattern, RegexOptions.IgnoreCase);
-            return m.Success ? m.Groups[1].Value : null;
-        }
-
         internal static string CreateBreadcrumb()
         {
-            return $" ({GetBetween(Db.ConnectionString, "data source=", ";", false)} > {GetBetween(Db.ConnectionString, "initial catalog=", ";", false)} > {Db.PackageTable})";
+            return $" ({Db.Sccb.DataSource} > {Db.Sccb.InitialCatalog} > {Db.Table})";
         }
 
         internal static void Pop(string format, params object[] args)
