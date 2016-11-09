@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace WpfUtil
 {
@@ -20,6 +22,8 @@ namespace WpfUtil
             //    Loaded += (sender, e) => Application.Current.Shutdown(1);
             //}
 
+            SetIcon();
+
             Title += U.CreateBreadcrumb();
 
             DataGrid1.ItemsSource = new List<Record>
@@ -29,6 +33,33 @@ namespace WpfUtil
             };
 
             BarButton.Click += (sender, e) => MessageBox.Show("Bar");
+        }
+
+        // http://glyphicons.com
+        // To use the resource image Foo.ico by "Resources/Foo.ico" instead of "var x = Properties.Resources.Foo",
+        // change the properties of the image as follows.
+        // * Build Action -> Content
+        // * Copy to Output Directory -> Copy if newer
+        void SetIcon()
+        {
+            string uri;
+
+            switch (ConfigurationManager.AppSettings["Environment"])
+            {
+                case "p":
+                    uri = "Resources/Flag.ico";
+                    break;
+                case "1":
+                    uri = "Resources/Tortoise.ico";
+                    break;
+                case "2":
+                    uri = "Resources/Rabbit.ico";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Icon = new BitmapImage(new Uri(uri, UriKind.Relative));
         }
 
         void FooButton_OnClick(object sender, RoutedEventArgs e)
