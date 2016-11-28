@@ -24,6 +24,9 @@ namespace WpfUtil
 
             SetIcon();
 
+            // Set MaxHeight to enable a vertical scrollbar.
+            DataGrid1.MaxHeight = SystemParameters.VirtualScreenHeight * 0.8;
+
             Title += U.CreateBreadcrumb();
 
             DataGrid1.ItemsSource = new List<Record>
