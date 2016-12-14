@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Db.cs" />
+    <Compile Include="MessageBox1.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="U.cs" />
     <Page Include="MainWindow.xaml">
