@@ -1,42 +1,32 @@
-﻿using System.Windows;
+﻿using System;
 
 namespace WpfUtil
 {
     static class MessageBox1
     {
-        // MessageBoxOptions.DefaultDesktopOnly is to bring a MessageBox to the front.
+        // Show a window topmost
+        const uint MbServiceNotification = 0x00200000;
+
         internal static void Show(string s)
         {
-            MessageBox.Show(s,
-                            " ",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.None,
-                            MessageBoxResult.None,
-                            MessageBoxOptions.DefaultDesktopOnly);
+            NativeMethods.MessageBox(IntPtr.Zero, s, " ", MbServiceNotification);
         }
 
-        // Use YesNo when clicking No doesn't behaves as if you didn't trigger YesNo.
-        internal static bool Yes(string s)
-        {
-            return MessageBox.Show(s,
-                                   " ",
-                                   MessageBoxButton.YesNo,
-                                   MessageBoxImage.None,
-                                   MessageBoxResult.None,
-                                   MessageBoxOptions.DefaultDesktopOnly)
-                                   == MessageBoxResult.Yes;
-        }
-
-        // Use OkCancel when clicking Cancel behaves as if you didn't trigger OkCancel.
+        // Use OkCancel where clicking Cancel behaves as if you haven't triggered OkCancel.
         internal static bool Ok(string s)
         {
-            return MessageBox.Show(s,
-                                   " ",
-                                   MessageBoxButton.OKCancel,
-                                   MessageBoxImage.None,
-                                   MessageBoxResult.None,
-                                   MessageBoxOptions.DefaultDesktopOnly)
-                                   == MessageBoxResult.OK;
+            const uint mbOkCancel = 0x00000001;
+            const int idOk = 1;
+
+            return NativeMethods.MessageBox(IntPtr.Zero, s, " ", MbServiceNotification | mbOkCancel) == idOk;
+        }
+
+        internal static bool Yes(string s)
+        {
+            const uint mbYesNo = 0x00000004;
+            const int idYes = 6;
+
+            return NativeMethods.MessageBox(IntPtr.Zero, s, " ", MbServiceNotification | mbYesNo) == idYes;
         }
     }
 }
