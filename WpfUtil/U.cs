@@ -3,8 +3,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Control = System.Windows.Forms.Control;
-using Screen = System.Windows.Forms.Screen;
 
 namespace WpfUtil
 {
@@ -29,11 +27,6 @@ namespace WpfUtil
         {
             // DoDragDrop needs to be called before the left button is up, not when the left button is up.
             DragDrop.DoDragDrop(dragSource, new DataObject(DataFormats.FileDrop, new[] { path }), DragDropEffects.Copy);
-        }
-
-        internal static Screen GetMouseScreen()
-        {
-            return Screen.FromPoint(Control.MousePosition);
         }
 
         // An alternative to UIElement.IsMouseOver that is always true.
