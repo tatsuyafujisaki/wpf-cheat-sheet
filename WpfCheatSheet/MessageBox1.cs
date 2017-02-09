@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfUtil
+namespace WpfCheatSheet
 {
     static class MessageBox1
     {

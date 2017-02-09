@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 
-namespace WpfUtil
+namespace WpfCheatSheet
 {
     class Io
     {

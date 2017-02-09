@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 
-namespace WpfUtil
+namespace WpfCheatSheet
 {
     partial class App : Application
     {

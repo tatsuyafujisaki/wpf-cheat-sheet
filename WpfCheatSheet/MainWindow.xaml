@@ -1,6 +1,6 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="WpfUtil.MainWindow"
+        x:Class="WpfCheatSheet.MainWindow"
         DataContext="{Binding ElementName=Record}"
         Title="MainWindow"
         WindowStartupLocation="CenterScreen"
@@ -43,7 +43,6 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
-                    Name="FooButton"
                     Click="FooButton_OnClick">Foo button</Button>
             <Button Grid.Column="1"
                     Name="BarButton">Bar button</Button>

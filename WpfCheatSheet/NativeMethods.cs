@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace WpfUtil
+namespace WpfCheatSheet
 {
     static class NativeMethods
     {
