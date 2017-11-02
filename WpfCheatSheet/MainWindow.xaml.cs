@@ -20,8 +20,8 @@ namespace WpfCheatSheet
                 && ApplicationDeployment.CurrentDeployment.Update())
             {
                 Process.Start(ApplicationDeployment.CurrentDeployment.UpdateLocation.AbsoluteUri);
-                // Exit after constructor.
-                // Note that there is no way to exit in the constructor.
+
+                // Exit after constructor because there is no way to exit in the constructor.
                 Loaded += (sender, e) => Application.Current.Shutdown(1);
             }
 
