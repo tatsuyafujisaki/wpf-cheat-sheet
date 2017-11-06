@@ -78,11 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command1.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Io.cs" />
     <Compile Include="MessageBox1.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="U.cs" />
+    <Compile Include="ViewModel1.cs" />
+    <Compile Include="ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

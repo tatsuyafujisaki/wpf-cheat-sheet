@@ -1,11 +1,14 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:WpfCheatSheet"
         x:Class="WpfCheatSheet.MainWindow"
-        DataContext="{Binding ElementName=Record}"
         Title="MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         PreviewKeyDown="Window_PreviewKeyDown">
+    <Window.DataContext>
+        <vm:ViewModel1 />
+    </Window.DataContext>    
     <StackPanel>
         <TextBlock Visibility="Collapsed">Use Visibility.Collapsed rather than Height = 0 to hide an control because the latter keeps the control valid in the tab navigation.</TextBlock>
         <DataGrid Name="DataGrid1"
@@ -39,11 +42,10 @@
         -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0"
-                    Click="FooButton_OnClick">Foo button</Button>
+            <Button Content="Press" Command="{Binding Command1}" />
             <Button Grid.Column="1"
                     Name="BarButton">Bar button</Button>
         </Grid>
