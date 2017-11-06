@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -10,68 +11,37 @@ namespace WpfCheatSheet
         // Don't use App() constructor for the two reasons.
         // 1. Trying to shut down the application in the constructor makes an error.
         // 2. The following does not work because LoadCompleted needs a form to be triggered.
-        // LoadCompleted += (sender, e1) => Shutdown();
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.CheckForUpdate() && ApplicationDeployment.CurrentDeployment.Update())
+            {
+                Process.Start(ApplicationDeployment.CurrentDeployment.UpdateLocation.AbsoluteUri);
+                Shutdown(1);
+            }
 
-            CloseDuplicateWithPrompt();
-
-            var args = Environment.GetCommandLineArgs().Skip(1).ToArray();
-
-            if (!AreValidArguments(args))
+            if (DateTime.Today.Day % 2 == 0)
             {
                 MessageBox.Show("Usage: ...");
                 Shutdown(1);
                 return;
             }
 
-            new MainWindow().Show();
-        }
-
-        static void CloseDuplicate()
-        {
-            var me = Process.GetCurrentProcess();
-            foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id)) { p.Kill(); }
-        }
-
-        void CloseDuplicateWithPrompt()
-        {
-            var me = Process.GetCurrentProcess();
-            var ps = Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id).ToArray();
-
-            if (!ps.Any()) { return; }
-
-            if (MessageBox.Show("Old processes are running. Close them and proceed?", "", MessageBoxButton.YesNo)
-                == MessageBoxResult.Yes)
-            {
-                foreach (var p in ps) { p.Kill(); }
-            }
-            else
-            {
-                Shutdown(1);
-            }
+            new View1().Show();
         }
 
         void BringOldToFront()
         {
             var me = Process.GetCurrentProcess();
-            var myId = me.Id;
 
             const int SW_RESTORE = 9;
 
-            foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != myId))
+            foreach (var p in Process.GetProcessesByName(me.ProcessName).Where(p => p.Id != me.Id))
             {
                 NativeMethods.ShowWindow(p.MainWindowHandle, SW_RESTORE);
                 NativeMethods.SetForegroundWindow(p.MainWindowHandle);
             }
 
             Shutdown(1);
-        }
-
-        static bool AreValidArguments(string[] args)
-        {
-            return true;
         }
     }
 }

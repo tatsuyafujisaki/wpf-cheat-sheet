@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Deployment.Application;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,21 +7,11 @@ using System.Windows.Input;
 
 namespace WpfCheatSheet
 {
-    partial class MainWindow : Window
+    partial class View1 : Window
     {
-        internal MainWindow()
+        internal View1()
         {
             InitializeComponent();
-
-            if (ApplicationDeployment.IsNetworkDeployed
-                && ApplicationDeployment.CurrentDeployment.CheckForUpdate()
-                && ApplicationDeployment.CurrentDeployment.Update())
-            {
-                Process.Start(ApplicationDeployment.CurrentDeployment.UpdateLocation.AbsoluteUri);
-
-                // Exit after constructor because there is no way to exit in the constructor.
-                Loaded += (sender, e) => Application.Current.Shutdown(1);
-            }
 
             // Set MaxHeight to enable a vertical scrollbar.
             DataGrid1.MaxHeight = SystemParameters.VirtualScreenHeight * 0.8;
@@ -37,11 +25,6 @@ namespace WpfCheatSheet
             };
 
             BarButton.Click += (sender, e) => MessageBox.Show("Bar");
-        }
-
-        void FooButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Foo");
         }
 
         void DigitOnly(object sender, TextCompositionEventArgs e)
