@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:WpfCheatSheet"
         x:Class="WpfCheatSheet.View1"
-        Title="MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
+        Title="View1"
         PreviewKeyDown="Window_PreviewKeyDown">
     <Window.DataContext>
         <vm:ViewModel1 />
