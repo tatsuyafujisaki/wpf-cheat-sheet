@@ -19,6 +19,12 @@ For example, if the self is Window...
 DataContext="{Binding RelativeSource={RelativeSource Self}}"
 ```
 
+# How to bind with another UI
+```xml
+<TextBox Name="TextBox1" />
+<TextBox Name="TextBox2" Text="{Binding ElementName=TextBox1, Path=Text}" />
+```
+
 # Links
 * [Binding Sources Overview](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/binding-sources-overview)
 * [Binding Mode Enum](https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.bindingmode)
