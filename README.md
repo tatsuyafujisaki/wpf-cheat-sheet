@@ -13,6 +13,12 @@ Name|Description
 Binding source|Object
 Binding target|GUI
 
+# How to bind with self
+For example, if the self is Window...
+```xml
+DataContext="{Binding RelativeSource={RelativeSource Self}}"
+```
+
 # Links
 * [Binding Sources Overview](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/binding-sources-overview)
 * [Binding Mode Enum](https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.bindingmode)
