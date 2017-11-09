@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WpfCheatSheet
+namespace WpfCheatSheet.Commands
 {
-    class Command1 : ICommand
+    class DelegateCommand : ICommand
     {
-        private Action execute;
-        private Func<bool> canExecute;
-
-        public Command1(Action execute, Func<bool> canExecute)
+        public DelegateCommand(Action execute, Func<bool> canExecute)
         {
             this.execute = execute;
             this.canExecute = canExecute;
@@ -23,5 +20,8 @@ namespace WpfCheatSheet
         public bool CanExecute(object parameter) => canExecute();
 
         public void Execute(object parameter) => execute();
+
+        Action execute;
+        Func<bool> canExecute;
     }
 }

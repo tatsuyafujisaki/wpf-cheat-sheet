@@ -3,6 +3,7 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using WpfCheatSheet.Views;
 
 namespace WpfCheatSheet
 {

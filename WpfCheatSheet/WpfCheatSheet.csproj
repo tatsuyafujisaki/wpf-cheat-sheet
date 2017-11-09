@@ -78,15 +78,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command1.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Io.cs" />
     <Compile Include="MessageBox1.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="U.cs" />
-    <Compile Include="ViewModel1.cs" />
-    <Compile Include="ViewModelBase.cs" />
-    <Page Include="View1.xaml">
+    <Compile Include="ViewModels\ViewModel1.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="Views\View1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,7 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View1.xaml.cs">
+    <Compile Include="Views\View1.xaml.cs">
       <DependentUpon>View1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

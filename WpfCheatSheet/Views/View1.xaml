@@ -1,14 +1,14 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:WpfCheatSheet"
-        x:Class="WpfCheatSheet.View1"
+        xmlns:vm="clr-namespace:WpfCheatSheet.ViewModels"
+        x:Class="WpfCheatSheet.Views.View1"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         Title="View1"
         PreviewKeyDown="Window_PreviewKeyDown">
     <Window.DataContext>
         <vm:ViewModel1 />
-    </Window.DataContext>    
+    </Window.DataContext>
     <StackPanel>
         <TextBlock Visibility="Collapsed">Use Visibility.Collapsed rather than Height = 0 to hide an control because the latter keeps the control valid in the tab navigation.</TextBlock>
         <DataGrid Name="DataGrid1"
