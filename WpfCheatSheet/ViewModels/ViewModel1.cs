@@ -19,17 +19,17 @@ namespace WpfCheatSheet.ViewModels
             }
         }
 
-        DelegateCommand dc;
-        public DelegateCommand Dc
+        DelegateCommand helloWorldCommand;
+        public DelegateCommand HelloWorldCommand
         {
             get
             {
-                if (dc == null)
+                if (helloWorldCommand == null)
                 {
-                    dc = new DelegateCommand(() => name = "John Doe", () => true);
+                    helloWorldCommand = new DelegateCommand(() => MessageBox1.Show("Hello, world!"), () => true);
                 }
 
-                return dc;
+                return helloWorldCommand;
             }
         }
     }

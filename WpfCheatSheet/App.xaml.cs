@@ -27,7 +27,7 @@ namespace WpfCheatSheet
                 return;
             }
 
-            new View1().Show();
+            new MainWindow().Show();
         }
 
         void BringOldToFront()

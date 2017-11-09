@@ -7,9 +7,9 @@ using System.Windows.Input;
 
 namespace WpfCheatSheet.Views
 {
-    partial class View1 : Window
+    partial class MainWindow : Window
     {
-        internal View1()
+        internal MainWindow()
         {
             InitializeComponent();
 
@@ -23,8 +23,6 @@ namespace WpfCheatSheet.Views
                 new Record("Name1", false, "User1", DateTime.Now),
                 new Record("Name2", false, "User2", DateTime.Now)
             };
-
-            BarButton.Click += (sender, e) => MessageBox.Show("Bar");
         }
 
         void DigitOnly(object sender, TextCompositionEventArgs e)
