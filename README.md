@@ -10,7 +10,7 @@
 # Glossary
 Name|Description
 ---|---
-Binding source|Object
+Binding source|object
 Binding target|GUI
 
 # How to bind with self
