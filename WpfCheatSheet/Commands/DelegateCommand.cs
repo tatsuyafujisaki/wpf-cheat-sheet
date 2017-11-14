@@ -5,7 +5,7 @@ namespace WpfCheatSheet.Commands
 {
     class DelegateCommand : ICommand
     {
-        public DelegateCommand(Action execute, Func<bool> canExecute)
+        public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
@@ -17,11 +17,10 @@ namespace WpfCheatSheet.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public bool CanExecute(object parameter) => canExecute();
+        public bool CanExecute(object parameter) => canExecute == null || canExecute(parameter);
+        public void Execute(object parameter) => execute(parameter);
 
-        public void Execute(object parameter) => execute();
-
-        Action execute;
-        Func<bool> canExecute;
+        readonly Action<object> execute;
+        readonly Func<object, bool> canExecute;
     }
 }

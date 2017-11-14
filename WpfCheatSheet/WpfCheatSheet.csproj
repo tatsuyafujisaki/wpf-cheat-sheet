@@ -63,6 +63,8 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -80,10 +82,14 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Io.cs" />
-    <Compile Include="MessageBox1.cs" />
-    <Compile Include="Record.cs" />
+    <Compile Include="Messengers\Message.cs" />
+    <Compile Include="Messengers\MessageEventArgs.cs" />
+    <Compile Include="Messengers\MessageTrigger.cs" />
+    <Compile Include="Messengers\MessageTriggerAction.cs" />
+    <Compile Include="Messengers\Messenger.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="U.cs" />
-    <Compile Include="ViewModels\ViewModel1.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +139,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

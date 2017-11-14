@@ -1,12 +1,25 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
+using System.Windows.Forms;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace WpfCheatSheet
 {
     class Io
     {
         // Mark Main method with STAThread or the dialog will not appear.
-        static string OpenFileDialog()
+        internal static string FolderBrowserDialog()
+        {
+            var fbd = new FolderBrowserDialog
+            {
+                SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
+
+            return fbd.ShowDialog() == DialogResult.OK ? fbd.SelectedPath : null;
+        }
+
+        // Mark Main method with STAThread or the dialog will not appear.
+        internal static string OpenFileDialog()
         {
             var ofd = new OpenFileDialog
             {
@@ -17,7 +30,7 @@ namespace WpfCheatSheet
         }
 
         // Mark Main method with STAThread or the dialog will not appear.
-        static string SaveFileDialog()
+        internal static string SaveFileDialog()
         {
             var sfd = new SaveFileDialog
             {

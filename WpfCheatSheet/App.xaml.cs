@@ -1,5 +1,4 @@
-﻿using System;
-using System.Deployment.Application;
+﻿using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -20,12 +19,12 @@ namespace WpfCheatSheet
                 Shutdown(1);
             }
 
-            if (DateTime.Today.Day % 2 == 0)
-            {
-                MessageBox.Show("Usage: ...");
-                Shutdown(1);
-                return;
-            }
+            // if (...)
+            // {
+            //     MessageBox.Show("Shutting down ...");
+            //     Shutdown(1);
+            //     return;
+            // }
 
             new MainWindow().Show();
         }
