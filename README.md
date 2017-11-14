@@ -2,6 +2,7 @@
 
 # Note
 * MouseBinding cannot access MouseEventArgs. Use Behavior to access MouseEventArgs.
+* InputBinding.CommandParameter is not DependencyProperty so cannot set a UI.
 
 # Best practices
 * Omit Grid.Row="0" and Grid.Column="0" as they are optional.
