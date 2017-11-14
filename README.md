@@ -14,9 +14,8 @@ Binding source|Object
 Binding target|GUI
 
 # How to bind with self
-For example, if the self is Window...
 ```xml
-DataContext="{Binding RelativeSource={RelativeSource Self}}"
+"{Binding RelativeSource={RelativeSource Self}}"
 ```
 
 # How to bind with another UI
