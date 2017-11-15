@@ -5,7 +5,11 @@
 * InputBinding.CommandParameter is not DependencyProperty so cannot pass a UI.
 * Use Behavior to access KeyEventArgs or MouseEventArgs.
   * KeyBinding cannot access KeyEventArgs.
-  * MouseBinding cannot access MouseEventArgs.
+  * MouseBinding cannot access MouseEventArgs.
+* How to make the UI thread wait until a non-UI thread is done.
+```csharp
+await Task.Run(() => IamNonUiThread());
+```
 
 # Best practices
 * Omit Grid.Row="0" and Grid.Column="0" as they are optional.
