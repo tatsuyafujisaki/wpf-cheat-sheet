@@ -1,8 +1,11 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/l5tsskn518iijvus?svg=true)](https://ci.appveyor.com/project/tatsuya/wpf-cheat-sheet)
 
 # Note
-* MouseBinding cannot access MouseEventArgs. Use Behavior to access MouseEventArgs.
-* InputBinding.CommandParameter is not DependencyProperty so cannot set a UI.
+* ApplicationCommands cannot be used in MVVM.
+* InputBinding.CommandParameter is not DependencyProperty so cannot pass a UI.
+* Use Behavior to access KeyEventArgs or MouseEventArgs.
+  * KeyBinding cannot access KeyEventArgs.
+  * MouseBinding cannot access MouseEventArgs.
 
 # Best practices
 * Omit Grid.Row="0" and Grid.Column="0" as they are optional.
@@ -15,7 +18,7 @@
 Name|Description
 ---|---
 Binding source|object
-Binding target|GUI
+Binding target|UI
 
 # How to bind with self
 ```xml
