@@ -3,17 +3,19 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:vm="clr-namespace:WpfCheatSheet.ViewModels"
         xmlns:m="clr-namespace:WpfCheatSheet.Messengers"
+        xmlns:b="clr-namespace:WpfCheatSheet.Behaviors"
         x:Class="WpfCheatSheet.Views.MainWindow"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
+        AllowDrop="True"
         Title="{Binding WindowTitle}">
     <Window.DataContext>
         <vm:ViewModel />
     </Window.DataContext>
-    <Window.InputBindings >
-        <KeyBinding Key="Escape"
-                    Command="{Binding CloseWindowCommand}" />
-    </Window.InputBindings>
+    <i:Interaction.Behaviors>
+        <b:DropBehavior Command="{Binding DropCommand}" />
+        <b:EscapeOnWindowBehavior />
+    </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
         <m:MessageTrigger SourceObject="{Binding Messenger}">
             <m:MessageTriggerAction />
@@ -31,20 +33,23 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label Content="Folder1" />
-            <TextBox Grid.Column="1" Text="{Binding Folder1}" >
+            <TextBox Grid.Column="1"
+                     Text="{Binding Folder1}"
+                     ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}">
                 <TextBox.InputBindings>
                     <MouseBinding MouseAction="LeftDoubleClick"
-                                  Command="{Binding SetFolderCommand}"
+                                  Command="{Binding OpenFolderCommand}"
                                   CommandParameter="Folder1" />
                 </TextBox.InputBindings>
             </TextBox>
             <Label Grid.Row="1" Content="File1" />
             <TextBox Grid.Row="1" 
                      Grid.Column="1"
-                     Text="{Binding File1}">
+                     Text="{Binding File1}"
+                     ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}">
                 <TextBox.InputBindings>
                     <MouseBinding MouseAction="LeftDoubleClick"
-                                  Command="{Binding SetFileCommand}"
+                                  Command="{Binding OpenFileCommand}"
                                   CommandParameter="File1" />
                 </TextBox.InputBindings>
             </TextBox>
@@ -60,6 +65,9 @@
                   ItemsSource="{Binding Items}"
                   SelectedItem="{Binding SelectedItem}"
                   MaxHeight="{Binding DataGridMaxHeight}">
+            <!--<i:Interaction.Behaviors>
+                <b:MouseMoveBehavior Command="{Binding MouseMoveCommand}" />
+            </i:Interaction.Behaviors>-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Binding="{Binding Name}" />

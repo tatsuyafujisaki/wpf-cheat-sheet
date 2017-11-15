@@ -79,16 +79,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\MouseMoveBehavior.cs" />
+    <Compile Include="Behaviors\LeftButtonDownBehavior.cs" />
+    <Compile Include="Behaviors\DropBehavior.cs" />
+    <Compile Include="Behaviors\EscapeOnWindowBehavior.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Db.cs" />
-    <Compile Include="Io.cs" />
+    <Compile Include="Common\Bool.cs" />
+    <Compile Include="Common\Db.cs" />
+    <Compile Include="Common\Io.cs" />
     <Compile Include="Messengers\Message.cs" />
     <Compile Include="Messengers\MessageEventArgs.cs" />
     <Compile Include="Messengers\MessageTrigger.cs" />
     <Compile Include="Messengers\MessageTriggerAction.cs" />
     <Compile Include="Messengers\Messenger.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="U.cs" />
+    <Compile Include="Common\U.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="Views\MainWindow.xaml">
@@ -105,7 +110,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Common\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
