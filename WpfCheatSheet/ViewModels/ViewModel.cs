@@ -118,7 +118,6 @@ namespace WpfCheatSheet.ViewModels
 
                         if (Items.Select(r => r.Name).Contains(fileName))
                         {
-                            Messenger.Send(new Message(string.Format("The name \"{0}\" is already taken.", fileName)));
                             return;
                         }
 
