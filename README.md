@@ -10,6 +10,7 @@
 ```csharp
 await Task.Run(() => IamNonUiThread());
 ```
+* DataTemplate is how to display an object in GUI and analogous to ToString in CUI.
 
 # Best practices
 * Omit Grid.Row="0" and Grid.Column="0" as they are optional.
