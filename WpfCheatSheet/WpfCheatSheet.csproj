@@ -87,6 +87,9 @@
     <Compile Include="Common\Bool.cs" />
     <Compile Include="Common\Db.cs" />
     <Compile Include="Common\Io.cs" />
+    <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Converters\UncConverter.cs" />
     <Compile Include="Messengers\Message.cs" />
     <Compile Include="Messengers\MessageEventArgs.cs" />
     <Compile Include="Messengers\MessageTrigger.cs" />

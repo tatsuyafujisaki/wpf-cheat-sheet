@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -24,8 +24,9 @@ namespace WpfCheatSheet.ViewModels
                 }
             }
 
-            Items = new List<Item> { new Item("Name1", false, "User1", DateTime.Now),
-                                     new Item("Name2", false, "User2", DateTime.Now) };
+            Items = new ObservableCollection<Item> { new Item("Name1", true, "Body1", "User1",  new DateTime(2017, 1, 1)),
+                                                     new Item("Name2", false, "Body2", "User2", new DateTime(2018, 1, 1)),
+                                                     new Item("Name3", false, "Body3", "User3", DateTime.Now)};
         }
 
         const string settingsFile = "Settings.txt";
@@ -45,8 +46,8 @@ namespace WpfCheatSheet.ViewModels
             set
             {
                 folder1 = value;
-                NotifyPropertyChanged(nameof(Folder1));
-                ErrorIfEmpty(nameof(Folder1), value);
+                NotifyPropertyChanged();
+                ErrorIfEmpty(value);
             }
         }
 
@@ -58,8 +59,8 @@ namespace WpfCheatSheet.ViewModels
             set
             {
                 file1 = value;
-                NotifyPropertyChanged(nameof(File1));
-                ErrorIfEmpty(nameof(File1), value);
+                NotifyPropertyChanged();
+                ErrorIfEmpty(value);
             }
         }
 
@@ -68,15 +69,15 @@ namespace WpfCheatSheet.ViewModels
             get => SystemParameters.VirtualScreenHeight * 0.5;
         }
 
-        List<Item> items;
-        public List<Item> Items
+        ObservableCollection<Item> items;
+        public ObservableCollection<Item> Items
         {
             get => items;
 
             set
             {
                 items = value;
-                NotifyPropertyChanged(nameof(Items));
+                NotifyPropertyChanged();
             }
         }
 
@@ -88,7 +89,7 @@ namespace WpfCheatSheet.ViewModels
             set
             {
                 selectedItem = value;
-                NotifyPropertyChanged(nameof(SelectedItem));
+                NotifyPropertyChanged();
             }
         }
 
@@ -121,7 +122,12 @@ namespace WpfCheatSheet.ViewModels
                             return;
                         }
 
-                        // Upload and activate the txt file.
+                        foreach (var item in Items)
+                        {
+                            item.IsActive = false;
+                        }
+
+                        Items.Add(new Item(fileName, true, File.ReadAllText(path), Environment.UserName, DateTime.Now));
                     }
                 }));
             }
@@ -180,19 +186,48 @@ namespace WpfCheatSheet.ViewModels
         }
 
         ICommand saveSettingsCommand;
-        public ICommand SaveSettingsCommand
-        {
-            get
+        public ICommand SaveSettingsCommand => saveSettingsCommand ?? (saveSettingsCommand =
+            new DelegateCommand(e =>
             {
-                return saveSettingsCommand ?? (saveSettingsCommand = new DelegateCommand(e =>
+                using (var sw = new StreamWriter(settingsFile))
                 {
-                    using (var sw = new StreamWriter(settingsFile))
-                    {
-                        sw.WriteLine();
-                        sw.WriteLine();
-                    }
-                }));
-            }
-        }
+                    sw.WriteLine();
+                    sw.WriteLine();
+                }
+            }));
+
+        ICommand activateCommand;
+        public ICommand ActivateCommand => activateCommand ?? (activateCommand =
+            new DelegateCommand(e =>
+            {
+                if (SelectedItem == null)
+                {
+                    return;
+                }
+
+                foreach (var item in Items)
+                {
+                    item.IsActive = false;
+                }
+
+                SelectedItem.IsActive = true;
+            }));
+
+        ICommand deleteCommand;
+        public ICommand DeleteCommand => deleteCommand ?? (deleteCommand =
+            new DelegateCommand(e =>
+            {
+                if (SelectedItem == null)
+                {
+                    return;
+                }
+
+                Items.Remove(SelectedItem);
+
+                if (Items.Any() && Items.All(x => !x.IsActive))
+                {
+                    Items.OrderByDescending(x => x.UpdatedAt).First().IsActive = true;
+                }
+            }));
     }
 }

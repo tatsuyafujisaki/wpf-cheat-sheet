@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace WpfCheatSheet.ViewModels
 {
@@ -10,7 +11,7 @@ namespace WpfCheatSheet.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged == null)
             {
@@ -40,7 +41,7 @@ namespace WpfCheatSheet.ViewModels
             ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
-        protected void ErrorIfEmpty(string propertyName, string s)
+        protected void ErrorIfEmpty(string s, [CallerMemberName] string propertyName = null)
         {
             if (string.IsNullOrEmpty(s))
             {

@@ -1,5 +1,6 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:WpfCheatSheet.Converters"
              x:Class="WpfCheatSheet.App"
              Startup="App_Startup">
     <!-- Specify Startup or StartUri above to enable Application.Resources below.
@@ -14,6 +15,10 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <BooleanToVisibilityConverter  x:Key="BooleanToVisibilityConverter" />
+        <c:UncConverter x:Key="UncConverter" />
+        <c:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisilibityConverter" />
+        <c:BoolToStringConverter x:Key="BoolToStringConverter" />
         <BitmapImage x:Key="GreatWave"
                      UriSource="Resources/GreatWave.jpg" />
         <!-- TextBlock has no padding by default.
