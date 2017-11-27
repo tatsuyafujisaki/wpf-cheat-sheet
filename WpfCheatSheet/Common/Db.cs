@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace WpfCheatSheet
+namespace WpfCheatSheet.Common
 {
     static class Db
     {

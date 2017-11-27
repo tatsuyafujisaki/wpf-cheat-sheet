@@ -80,13 +80,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\MouseMoveBehavior.cs" />
-    <Compile Include="Behaviors\LeftButtonDownBehavior.cs" />
     <Compile Include="Behaviors\DropBehavior.cs" />
     <Compile Include="Behaviors\EscapeOnWindowBehavior.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Common\Bool.cs" />
     <Compile Include="Common\Db.cs" />
     <Compile Include="Common\Io.cs" />
+    <Compile Include="Common\TemporaryFile.cs" />
     <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\UncConverter.cs" />

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
-namespace WpfCheatSheet
+namespace WpfCheatSheet.Common
 {
     class Io
     {
@@ -84,6 +84,40 @@ namespace WpfCheatSheet
                     {
                         return null;
                     }
+            }
+        }
+
+        internal static void TryDeleteDirectory(string path)
+        {
+            try
+            {
+                // Avoid DirectoryNotFoundException.
+                if (Directory.Exists(path))
+                {
+                    Directory.Delete(path, true);
+                }
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        internal static void TryDeleteFile(string path)
+        {
+            try
+            {
+                // Avoid ArgumentNullException by File.Delete("")
+                // Avoid ArgumentException by File.Delete(null)
+                // Avoid DirectoryNotFoundException by File.Delete(@"C:\NonExistingDirectory\Foo.txt")
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch
+            {
+                // ignored
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using WpfCheatSheet.Common;
 using WpfCheatSheet.Views;
 
 namespace WpfCheatSheet
@@ -11,7 +12,7 @@ namespace WpfCheatSheet
         // Don't use App() constructor for the two reasons.
         // 1. Trying to shut down the application in the constructor makes an error.
         // 2. The following does not work because LoadCompleted needs a form to be triggered.
-        private void App_Startup(object sender, StartupEventArgs e)
+        void App_Startup(object sender, StartupEventArgs e)
         {
             if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.CheckForUpdate() && ApplicationDeployment.CurrentDeployment.Update())
             {

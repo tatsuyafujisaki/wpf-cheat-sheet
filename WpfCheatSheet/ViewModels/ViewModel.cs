@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CheatSheet.Common;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -24,13 +26,12 @@ namespace WpfCheatSheet.ViewModels
                 }
             }
 
-            Items = new ObservableCollection<Item> { new Item("Name1", true, "Body1", "User1",  new DateTime(2017, 1, 1)),
-                                                     new Item("Name2", false, "Body2", "User2", new DateTime(2018, 1, 1)),
-                                                     new Item("Name3", false, "Body3", "User3", DateTime.Now)};
+            Items = new ObservableCollection<Item> { new Item("Name1.txt", true, "Body1", "User1",  new DateTime(2017, 1, 1)),
+                                                     new Item("Name2.txt", false, "Body2", "User2", new DateTime(2018, 1, 1)),
+                                                     new Item("Name3.txt", false, "Body3", "User3", DateTime.Now)};
         }
 
         const string settingsFile = "Settings.txt";
-
         public Messenger Messenger { get; set; } = new Messenger();
 
         public string WindowTitle
@@ -45,9 +46,10 @@ namespace WpfCheatSheet.ViewModels
 
             set
             {
-                folder1 = value;
+                folder1 = value.Trim();
                 NotifyPropertyChanged();
                 ErrorIfEmpty(value);
+                ErrorIfDirectoryNotFound(value);
             }
         }
 
@@ -58,9 +60,10 @@ namespace WpfCheatSheet.ViewModels
 
             set
             {
-                file1 = value;
+                file1 = value.Trim();
                 NotifyPropertyChanged();
                 ErrorIfEmpty(value);
+                ErrorIfFileNotFound(value);
             }
         }
 
@@ -128,6 +131,29 @@ namespace WpfCheatSheet.ViewModels
                         }
 
                         Items.Add(new Item(fileName, true, File.ReadAllText(path), Environment.UserName, DateTime.Now));
+                    }
+                }));
+            }
+        }
+
+        ICommand mouseMoveCommand;
+        public ICommand MouseMoveCommand
+        {
+            get
+            {
+                return mouseMoveCommand ?? (mouseMoveCommand = new DelegateCommand(e =>
+                {
+                    var mea = (MouseEventArgs)e;
+
+                    if (SelectedItem == null || mea.LeftButton != MouseButtonState.Pressed)
+                    {
+                        return;
+                    }
+
+                    using (var tf = new TemporaryFile(SelectedItem.Name))
+                    {
+                        File.WriteAllText(tf.Path1, SelectedItem.Body);
+                        U.DragDrop1((DependencyObject)mea.Source, tf.Path1);
                     }
                 }));
             }
@@ -227,6 +253,28 @@ namespace WpfCheatSheet.ViewModels
                 if (Items.Any() && Items.All(x => !x.IsActive))
                 {
                     Items.OrderByDescending(x => x.UpdatedAt).First().IsActive = true;
+                }
+            }));
+
+        ICommand showSelectedItemCommand;
+        public ICommand ShowSelectedItemCommand => showSelectedItemCommand ?? (showSelectedItemCommand =
+            new DelegateCommand(e =>
+            {
+                if (SelectedItem == null)
+                {
+                    return;
+                }
+
+                using (var tf = new TemporaryFile(SelectedItem.Name))
+                {
+                    File.WriteAllText(tf.Path1, SelectedItem.Body);
+
+                    var p = Process.Start(tf.Path1);
+
+                    if (p != null)
+                    {
+                        p.WaitForExit();
+                    }
                 }
             }));
     }

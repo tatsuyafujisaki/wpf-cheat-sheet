@@ -79,9 +79,15 @@
                   ItemsSource="{Binding Source={StaticResource Items}}"
                   SelectedItem="{Binding SelectedItem}"
                   MaxHeight="{Binding DataGridMaxHeight}">
-            <!--<i:Interaction.Behaviors>
+            <i:Interaction.Behaviors>
                 <b:MouseMoveBehavior Command="{Binding MouseMoveCommand}" />
-            </i:Interaction.Behaviors>-->
+            </i:Interaction.Behaviors>
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Delete"
+                            Command="{Binding DeleteCommand}" />
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding ShowSelectedItemCommand}" />
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Binding="{Binding Name}" />
@@ -107,9 +113,5 @@
         <Image Width="200"
                Height="200"
                Source="{StaticResource GreatWave}" />
-        <TextBox PreviewTextInput="DigitOnly"
-                 LostFocus="TrimTextBox" />
-        <TextBox PreviewTextInput="DigitOrOneDecimalPointOnly"
-                 LostFocus="TrimTextBox" />
     </StackPanel>
 </Window>

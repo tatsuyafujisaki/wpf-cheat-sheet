@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -50,6 +51,30 @@ namespace WpfCheatSheet.ViewModels
             else
             {
                 errors.Remove(propertyName);
+            }
+        }
+
+        protected void ErrorIfDirectoryNotFound(string path, [CallerMemberName] string propertyName = null)
+        {
+            if (Directory.Exists(path))
+            {
+                errors.Remove(propertyName);
+            }
+            else
+            {
+                NotifyErrorsChanged(propertyName, "Directory not found");
+            }
+        }
+
+        protected void ErrorIfFileNotFound(string path, [CallerMemberName] string propertyName = null)
+        {
+            if (File.Exists(path))
+            {
+                errors.Remove(propertyName);
+            }
+            else
+            {
+                NotifyErrorsChanged(propertyName, "File not found");
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WpfCheatSheet
+namespace WpfCheatSheet.Common
 {
     static class U
     {
