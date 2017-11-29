@@ -17,7 +17,8 @@
         <CollectionViewSource x:Key="Items"
                               Source="{Binding Items}">
             <CollectionViewSource.SortDescriptions>
-                <cm:SortDescription PropertyName="UpdatedAt" Direction="Descending" />
+                <cm:SortDescription PropertyName="UpdatedAt"
+                                    Direction="Descending" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Window.Resources>
@@ -37,6 +38,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -67,7 +69,13 @@
                                   CommandParameter="File1" />
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Grid.Row="2"
+            <Label Grid.Row="2"
+                   Content="{Binding Decimal1}"
+                   ContentStringFormat="{}{0:#,##0.00##########################}" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding Decimal1, StringFormat={}{0:#\,##0.00##########################}}" />
+            <Button Grid.Row="3"
                     Grid.ColumnSpan="2"
                     Content="Save"
                     Command="{Binding SaveSettingsCommand}" />

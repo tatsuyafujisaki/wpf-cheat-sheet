@@ -26,6 +26,8 @@ namespace WpfCheatSheet.ViewModels
                 }
             }
 
+            Decimal1 = 0.0m / 3.0m;
+
             Items = new ObservableCollection<Item> { new Item("Name1.txt", true, "Body1", "User1",  new DateTime(2017, 1, 1)),
                                                      new Item("Name2.txt", false, "Body2", "User2", new DateTime(2018, 1, 1)),
                                                      new Item("Name3.txt", false, "Body3", "User3", DateTime.Now)};
@@ -64,6 +66,18 @@ namespace WpfCheatSheet.ViewModels
                 NotifyPropertyChanged();
                 ErrorIfEmpty(value);
                 ErrorIfFileNotFound(value);
+            }
+        }
+
+        decimal decimal1;
+        public decimal Decimal1
+        {
+            get => decimal1;
+
+            set
+            {
+                decimal1 = value;
+                NotifyPropertyChanged();
             }
         }
 
