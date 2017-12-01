@@ -13,7 +13,8 @@ await Task.Run(() => IamNonUiThread());
 * DataTemplate is how to display an object in GUI and analogous to ToString in CUI.
 
 # Best practices
-* Omit Grid.Row="0" and Grid.Column="0" as they are optional.
+* Omit Grid.Row="0" and Grid.Column="0" as they are default.
+* Omit Width="*" on ColumnDefinition and Height="*" on RowDefinition as star is default.
 * A rather than B
   * Use {Binding Property1} rather than {Binding Path=Property1} as "Path=" is optional.
   * Use attribute syntax rather than property element syntax
