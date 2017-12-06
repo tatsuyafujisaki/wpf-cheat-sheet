@@ -16,9 +16,11 @@
             </Style.Triggers>
         </Style>
         <BooleanToVisibilityConverter  x:Key="BooleanToVisibilityConverter" />
-        <c:UncConverter x:Key="UncConverter" />
+        <c:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+        <c:EnumToStringConverter x:Key="EnumToStringConverter" />
         <c:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisilibityConverter" />
         <c:BoolToStringConverter x:Key="BoolToStringConverter" />
+        <c:UncConverter x:Key="UncConverter" />
         <BitmapImage x:Key="GreatWave"
                      UriSource="Resources/GreatWave.jpg" />
         <!-- TextBlock has no padding by default.

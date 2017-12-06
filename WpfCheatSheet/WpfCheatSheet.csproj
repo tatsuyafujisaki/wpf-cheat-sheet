@@ -87,6 +87,8 @@
     <Compile Include="Common\Db.cs" />
     <Compile Include="Common\Io.cs" />
     <Compile Include="Common\TemporaryFile.cs" />
+    <Compile Include="Converters\EnumToBoolConverter.cs" />
+    <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\UncConverter.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Messengers\MessageTrigger.cs" />
     <Compile Include="Messengers\MessageTriggerAction.cs" />
     <Compile Include="Messengers\Messenger.cs" />
+    <Compile Include="Models\Enum1.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Common\U.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />

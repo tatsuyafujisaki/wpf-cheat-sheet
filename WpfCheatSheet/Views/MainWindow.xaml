@@ -1,9 +1,11 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:vm="clr-namespace:WpfCheatSheet.ViewModels"
-        xmlns:m="clr-namespace:WpfCheatSheet.Messengers"
+        xmlns:m="clr-namespace:WpfCheatSheet.Models"
+        xmlns:msg="clr-namespace:WpfCheatSheet.Messengers"
         xmlns:b="clr-namespace:WpfCheatSheet.Behaviors"
         x:Class="WpfCheatSheet.Views.MainWindow"
         WindowStartupLocation="CenterScreen"
@@ -21,15 +23,22 @@
                                     Direction="Descending" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
+        <ObjectDataProvider x:Key="BLT"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type s:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="m:BLT" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Window.Resources>
     <i:Interaction.Behaviors>
         <b:DropBehavior Command="{Binding DropCommand}" />
         <b:EscapeOnWindowBehavior />
     </i:Interaction.Behaviors>
     <i:Interaction.Triggers>
-        <m:MessageTrigger SourceObject="{Binding Messenger}">
-            <m:MessageTriggerAction />
-        </m:MessageTrigger>
+        <msg:MessageTrigger SourceObject="{Binding Messenger}">
+            <msg:MessageTriggerAction />
+        </msg:MessageTrigger>
     </i:Interaction.Triggers>
     <StackPanel>
         <Grid>
@@ -75,11 +84,19 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Text="{Binding Decimal1, StringFormat={}{0:#\,##0.00##########################}}" />
-            <Button Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    Content="Save"
-                    Command="{Binding SaveSettingsCommand}" />
         </Grid>
+        <Button Content="Save"
+                Command="{Binding SaveSettingsCommand}" />
+        <ComboBox ItemsSource="{Binding Source={StaticResource BLT}}"
+                  SelectedValue="{Binding SelectedBLT}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource EnumToStringConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Text="Enable me if bacon is selected."
+                   IsEnabled="{Binding SelectedBLT, Converter={StaticResource EnumToBoolConverter}}" />
         <DataGrid Name="DataGrid1"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"

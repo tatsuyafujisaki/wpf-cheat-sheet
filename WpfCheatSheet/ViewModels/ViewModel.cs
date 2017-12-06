@@ -81,6 +81,18 @@ namespace WpfCheatSheet.ViewModels
             }
         }
 
+        BLT selectedBLT;
+        public BLT SelectedBLT
+        {
+            get => selectedBLT;
+
+            set
+            {
+                selectedBLT = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public double DataGridMaxHeight
         {
             get => SystemParameters.VirtualScreenHeight * 0.5;
