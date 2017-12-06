@@ -6,11 +6,11 @@
 * Use Behavior to access KeyEventArgs or MouseEventArgs.
   * KeyBinding cannot access KeyEventArgs.
   * MouseBinding cannot access MouseEventArgs.
+* DataTemplate is how to display an object in GUI and analogous to ToString in CUI.
 * How to make the UI thread wait until a non-UI thread is done.
 ```csharp
 await Task.Run(() => IamNonUiThread());
 ```
-* DataTemplate is how to display an object in GUI and analogous to ToString in CUI.
 
 # Best practices
 * Omit Grid.Row="0" and Grid.Column="0" as they are default.
@@ -19,6 +19,24 @@ await Task.Run(() => IamNonUiThread());
   * Use {Binding Property1} rather than {Binding Path=Property1} as "Path=" is optional.
   * Use attribute syntax rather than property element syntax
     * For example, use \<Button Content="Content1" /> rather than \<Button>Content1\<Button/>
+* Bind the following method to PreviewMouseLeftButtonDown rather than MouseLeftButtonDown. MouseLeftButtonDown is never called.
+```csharp
+void CheckIfNewVersionAvailable(object sender, MouseButtonEventArgs e)
+{
+    if (IsLatestVersion(...))
+    {
+        return;
+    }
+
+    if (MessageBox.Show("New version is available. Restart?", "", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+    {
+        // Start the new version and close self.
+    }
+
+    // Not relay to the Click event.
+    e.Handled = true;
+}
+```
 
 # Glossary
 Name|Description
